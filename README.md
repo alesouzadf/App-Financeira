@@ -1,2 +1,3 @@
 # App-Financeira
-Projeto para desenvolvimento a partir do curso de Formacao Dev
+- App desenvolvido na linguajem Javascript e NodeJs com grande parte da solução implementado em backend
+- As entradas do usários serão recebidas via terminal sem recurso HTML/CSS
