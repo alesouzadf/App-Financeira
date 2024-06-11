@@ -1,18 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2016",
     "module": "commonjs",
     "outDir": "dist",
-    "strict": true,
-    "baseUrl": "./",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "@src/*": ["src/*"]
-    },
-    "useUnknownInCatchVariables": false
-  },
-  "include": ["src/**/*.ts", "spec/**/*.ts", "build.ts"],
-  "exclude": ["src/public/"]
+    "strict": true,
+    "skipLibCheck": true
+  }
 }
