@@ -1,8 +1,4 @@
-import Image from "next/image";
-import {Inter} from "next/font/google";
 import {useState} from "react";
-
-const inter = Inter({subsets: ["latin"]});
 
 export default function Home() {
   const [description, setDescription] = useState("");
@@ -20,7 +16,7 @@ export default function Home() {
     });
     const data = {
       description,
-      value,
+      value: Number(value),
       type,
       status,
     };
@@ -30,7 +26,6 @@ export default function Home() {
       body: JSON.stringify(data),
       headers: new Headers({
         "Content-Type": "application/json",
-        Accept: "application/json",
       }),
     };
 
