@@ -1,0 +1,11 @@
+POST http://localhost:4000
+Content-Type: application/json
+
+{
+    "value":100, 
+    "description":"Conta de luz", 
+    "type":"Receita", 
+    "status":"Pendente"
+}
+###
+GET http://localhost:4000/
