@@ -22,7 +22,7 @@ model Transacao {
   status     Status         @default(PENDENTE)
 }
 
-enum Tipo{
+enum Tipo{  
   DESPESA
   RECEITA
 }

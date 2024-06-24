@@ -10,8 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "core": "*",
+    "adapters": "*",
+    "prisma": "^5.15.1",
+    "terminal-kit": "^3.0.1",
     "ts-node": "^10.9.2",
     "typescript-config": "*"
+  },
+  "devDependencies": {
+    "@types/terminal-kit": "^2.5.6"
   }
 }

@@ -1,6 +1,7 @@
 {
-  "name": "core",
+  "name": "adapters",
   "version": "1.0.0",
+  "description": "",
   "main": "src/index.ts",
   "directories": {
     "test": "test"
@@ -9,15 +10,13 @@
     "test": "jest --watchAll --collectCoverage"
   },
   "keywords": [],
-  "author": "",
+  "author": "techtitans",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
+  "devDependencies": {  
     "eslint-config": "*",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.5",
-    "typescript-config": "*",
-    "uuid": "^10.0.0"
+    "typescript-config": "*"
+  },
+  "dependencies": {
+    "core": "*"
   }
 }

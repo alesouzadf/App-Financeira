@@ -1,3 +1,3 @@
-import { somar } from "core";
+import menuPrincipal from "../ui/menu/menuPrincipal";
 
-console.log(somar(1, 2))
+menuPrincipal()
