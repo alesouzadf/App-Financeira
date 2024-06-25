@@ -1,0 +1,1 @@
+import { TransacaoFacade } from 'adapters'

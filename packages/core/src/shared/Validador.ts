@@ -12,17 +12,6 @@ export default class Validador {
         return new Validador(valor, atributo ?? null, objeto ?? null)
     }
     
-    dataValida(
-        erro: string = "DATA_INVALIDA"
-    ):Validador {
-        const dataInvalida = isNaN(this.valor.getDate())
-        const horaInvalida = isNaN(this.valor.getTime())
-
-        return dataInvalida && horaInvalida
-            ? this
-            : this.adicionarErro(erro)
-    }
-
     tipoValido(
         erro: string = "TIPO_INVALIDO"
     ):Validador {

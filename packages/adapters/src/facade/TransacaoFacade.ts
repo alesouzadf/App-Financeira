@@ -10,7 +10,6 @@ export default class TransacaoFacade {
         const casoDeUso = new RegistrarTransacao(this.repo!)
         await casoDeUso.executar({
             descricao: dto.descricao!,
-            data: dto.data!,
             tipo: dto.tipo!,
             valor: dto.valor!,
             status: dto.status!
