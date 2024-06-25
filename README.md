@@ -101,7 +101,8 @@ Depopis desses comandos é só voltar para a raiz do projeto
     cd ..
     cd ..
 ```
-E rodar o comando 
+E rodar os comandos 
 ```bash
+    npm install
     npm run dev
 ```
