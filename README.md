@@ -95,6 +95,7 @@ Learn more about the power of Turborepo:
 - Gerar o schema do prisma e instalar o prisma client
 ```bash
     npx  prisma generate --schema=./prisma/schema.prisma
+    npx prisma migrate dev
 ```
 Depopis desses comandos é só voltar para a raiz do projeto
 ```bash
