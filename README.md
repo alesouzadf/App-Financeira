@@ -79,3 +79,11 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+# Subindo a imagem docker do bd postgree c/ prima
+
+- na pasta raiz do projeto ir para apps/backend e efetuar o comando 'npm i'
+- com o docker instalado em sua maquina rodar o comando 'sudo docker-compose up'
+- gerar schema do prima e instalar o prima client:
+  npx  prisma generate --schema=./prisma/schema.prisma
+- ir para a pasta apps/terminal e rodar os comandos 'npm -i' e 'npm run dev'
