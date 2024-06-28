@@ -79,3 +79,31 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+
+## Comandos para rodar o projeto
+
+### Subir o container docker
+- Entrar na pasta do backend
+```bash
+    cd apps/backend
+```
+- Rodar o comando do docker (me baseando no meu SO que é linux)
+```bash
+    sudo docker-compose up
+```
+- Gerar o schema do prisma e instalar o prisma client
+```bash
+    npx  prisma generate --schema=./prisma/schema.prisma
+    npx prisma migrate dev
+```
+Depopis desses comandos é só voltar para a raiz do projeto
+```bash
+    cd ..
+    cd ..
+```
+E rodar os comandos 
+```bash
+    npm install
+    npm run dev
+```
