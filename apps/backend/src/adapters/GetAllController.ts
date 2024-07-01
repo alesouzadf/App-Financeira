@@ -1,5 +1,5 @@
 import {Express} from "express";
-import GetAll from "../core/transaction/service/GetAll";
+import GetAll from "../../../../packages/core/src/transaction/service/GetAll";
 export default class GetAllController {
   constructor(
     readonly server: Express,

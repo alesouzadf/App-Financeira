@@ -9,10 +9,11 @@
     "test": "jest --watchAll --collectCoverage"
   },
   "keywords": [],
-  "author": "",
+  "author": "TechTitans",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@faker-js/faker": "^8.3.1",
     "@types/jest": "^29.5.12",
     "eslint-config": "*",
     "jest": "^29.7.0",

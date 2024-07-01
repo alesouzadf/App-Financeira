@@ -1,0 +1,19 @@
+{
+  "name": "adapters",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest --watchAll --collectCoverag"
+  },
+  "keywords": [],
+  "author": "TechTitans",
+  "description": "",
+  "license": "ISC",
+  "devDependencies": {  
+    "eslint-config": "*",
+    "typescript-config": "*"
+  },
+  "dependencies": {
+    "core": "*"
+  }
+}
