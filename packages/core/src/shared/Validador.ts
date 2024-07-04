@@ -45,20 +45,32 @@ export default class Validador {
 
     status(erro: string = "STATUS_INVALIDO"): Validador {
         const validador = this.naoNulo(erro)
-        if (Array.isArray(validador.valor)) {
-            return validador.valor.length > 0 ? validador : validador.adicionarErro(erro)
+        
+        let statusValido: boolean = false
+        
+        if(this.valor === 'PENDENTE'){
+            statusValido = true
+        } else if (this.valor === 'CONSOLIDADO'){
+            statusValido = true
+        } else if (this.valor === 'CANCELADO'){
+            statusValido = true
         }
-        return validador.valor?.trim() !== "PENDENTE" || "CONSOLIDADO" || "CANCELADO" 
-        ? validador : validador.adicionarErro(erro)
+
+        return statusValido ? validador : validador.adicionarErro(erro)
     }
 
     tipo(erro: string = "TIPO_INVALIDO"): Validador {
         const validador = this.naoNulo(erro)
-        if (Array.isArray(validador.valor)) {
-            return validador.valor.length > 0 ? validador : validador.adicionarErro(erro)
+        
+        let tipoValido: boolean = false
+        
+        if(this.valor === 'DESPESA'){
+            tipoValido = true
+        } else if (this.valor === 'RECEITA'){
+            tipoValido = true
         }
-        return validador.valor?.trim() !== "DESPESA" || "RECEITA" 
-        ? validador : validador.adicionarErro(erro)
+        
+        return tipoValido ? validador : validador.adicionarErro(erro)
     }
 
     tamanhoMenorQue(tamanhoMaximo: number, erro: string = "TAMANHO_GRANDE"): Validador {

@@ -12,7 +12,7 @@ export default class ListarTransactionController {
           try {
               const facade = new TransactionFacade(repo)
               const transactions = await facade.listar()
-              res.status(200).json(JSON.stringify(transactions))
+              res.status(200).json(transactions)
           } catch (e: any) {
               res.status(400).send(Erros.tratar(e))
           }

@@ -2,12 +2,12 @@ import Validador from "./Validador"
 
 export default class TipoTransacao {
     constructor(
-        readonly tipo: string = "",
+        readonly tipo: string,
         atributo?: string,
         objeto?: string,
     ) {
-        this.tipo = tipo?.trim() ?? ""
-        Validador.valor(tipo, atributo, objeto)
+        this.tipo = tipo
+        Validador.valor(this.tipo, atributo, objeto)
             .tipo()
             .lancarSeErro()
     }

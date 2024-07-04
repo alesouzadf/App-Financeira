@@ -9,7 +9,7 @@ export default class Valor {
         this.valor = valor
         Validador.valor(this.valor, atributo, objeto)
             .naoNulo()
-            .maiorOuIgualQue(0)
+            .maiorQue(0)
             .lancarSeErro()
     }
 

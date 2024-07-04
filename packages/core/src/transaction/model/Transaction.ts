@@ -25,7 +25,7 @@ export default class Transaction extends Entidade<Transaction, TransactionProps>
       super(props)
       this.value = new Valor(props.value!, 'valor', 'Transaction')
       this.description = new TextoSimples(props.description!, 5, 100, 'description', 'Transaction')
-      this.type = new TipoTransacao()
-      this.status = new StatusTransacao()
+      this.type = new TipoTransacao(props.type!, 'type', 'Transaction')
+      this.status = new StatusTransacao(props.status!, 'status', 'Transaction')
     }
 } 
