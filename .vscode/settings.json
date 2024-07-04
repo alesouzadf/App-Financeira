@@ -1,0 +1,10 @@
+{
+    "material-icon-theme.folders.associations": {
+        "adapters": "pipe",
+        "external": "tools",
+        "model": "json",
+        "provider": "config",
+        "service": "genarator",
+        "transaction": "admin"
+    }
+}

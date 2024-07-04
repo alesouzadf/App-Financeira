@@ -1,29 +1,16 @@
-import express from "express";
-import cors from "cors";
-import RepositoryMemory from "./external/memory/RepositoryMemory";
-import Create from "./core/transaction/service/Create";
-import CreateController from "./adapters/CreateController";
-import RepositoryPostgres from "./external/postgres/RepositotyPostgres";
-import GetAll from "./core/transaction/service/GetAll";
-import GetAllController from "./adapters/GetAllController";
+import dotenv from 'dotenv'
+dotenv.config()
 
-const app = express();
-const port = 4000;
-app.use(express.json());
-app.use(cors());
+import app from './external/api/config'
+import RegistrarTransactionController from './adapters/RegistrarTransactionController'
+import ListarTransactionController from './adapters/ListarTransactionControler'
+import RepositorioTransactionPrisma from './external/db/RepositorioTransactionPrisma'
 
-// const repository = new RepositoryMemory();
-// const create = new Create(repository);
-// new CreateController(app, create);
+// ----------------------------------- Dependências
 
-const repositoryPg = new RepositoryPostgres();
+const repoTransaction = new RepositorioTransactionPrisma()
 
-const createPg = new Create(repositoryPg);
-new CreateController(app, createPg);
+// ----------------------------------- Rotas Abertas
 
-const getAllPg = new GetAll(repositoryPg);
-new GetAllController(app, getAllPg);
-
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
-});
+new RegistrarTransactionController(app, repoTransaction)
+new ListarTransactionController(app, repoTransaction)

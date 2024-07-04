@@ -1,10 +1,16 @@
-import Transaction from "../../core/transaction/model/Transaction";
-import Repository from "../../core/transaction/service/Repository";
+import { RepositorioTransaction, Transaction } from "core";
 
-export default class RepositoryMemory implements Repository {
+export default class RepositorioTransactionMemory implements RepositorioTransaction {
+
+  obterPorId(id: number): Promise<Transaction | null> {
+    throw new Error("Method not implemented.");
+  }
+  buscarTudo(): Promise<Transaction[]> {
+    throw new Error("Method not implemented.");
+  }
   private readonly transactions: Transaction[] = [];
   
-  async create(transaction: Transaction): Promise<Transaction> {
+  async salvar(transaction: Transaction): Promise<Transaction> {
     const newTransaction = {...transaction, id: Math.random()};
     this.transactions.push(newTransaction);
     return newTransaction;
