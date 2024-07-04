@@ -8,7 +8,7 @@ export default class RegistrarTransactionController {
         readonly servidor: Express,
         readonly repo: RepositorioTransaction,
     ) {
-        servidor.post('/Transaction/registrar', async (req, res) => {
+        servidor.post('/transaction/registrar', async (req, res) => {
             try {
                 const { value, description, type, status } = req.body
                 const facade = new TransactionFacade(repo)

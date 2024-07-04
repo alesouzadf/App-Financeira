@@ -11,9 +11,8 @@ export default class UsuarioFacade {
         await casoDeUso.executar({
             value: dto.value!,
             description: dto.description!,
-            createdAt: dto.createdAt!,
             type: dto.type!,
-            status: dto.type!
+            status: dto.status!
         })
     }
 

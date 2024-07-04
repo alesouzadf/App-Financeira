@@ -5,7 +5,6 @@ import RepositorioTransaction from "../provider/RepositorioTransaction"
 export type Entrada = {
     value: number
     description: string
-    createdAt: Date
     type: string
     status: string
 }
@@ -16,9 +15,9 @@ export default class RegistrarTransaction implements CasoDeUso<Entrada, void>{
     ){}
     
     async executar(entrada: Entrada): Promise<void> {
-        const { description, createdAt, type, value, status } = entrada
+        const { value, description, type, status } = entrada
 
-        const newTransaction = new Transaction({value, description, createdAt, type, status})
+        const newTransaction = new Transaction({value, description, type, status})
 
         await this.repo.salvar(newTransaction)
     }

@@ -7,7 +7,7 @@ export default class Valor {
         objeto?: string,
     ) {
         this.valor = valor
-        Validador.valor(valor, atributo, objeto)
+        Validador.valor(this.valor, atributo, objeto)
             .naoNulo()
             .maiorOuIgualQue(0)
             .lancarSeErro()

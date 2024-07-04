@@ -9,17 +9,18 @@ export default class RepositorioTransactionPrisma implements RepositorioTransact
     }
     
     async buscarTudo(): Promise<Transaction[]> {
-    //  return await this.prisma.transaction.findMany();
-     throw new Error("Method not implemented.");
+     const transactions = await this.prisma.transaction.findMany()
+     return transactions as any
+    //  throw new Error("Method not implemented.");
     }
 
     async salvar(transaction: Transaction): Promise<Transaction> {
         const newTransaction = await this.prisma.transaction.upsert({
           where: { id:  -1 },
-          update: transaction.props as any,
+          update: transaction.props,
           create: transaction.props as any,
       })
-        return new Transaction(newTransaction)
+        return new Transaction(newTransaction)  
     }
 
 
