@@ -1,109 +1,99 @@
-# Turborepo starter
+# Aplicação Financeira
 
-This is an official starter Turborepo.
+## Índice
 
-## Using this example
+- [Aplicação Financeira](#aplicação-financeira)
+  - [Índice](#índice)
+  - [Executar o projeto](#executar-o-projeto)
+    - [Sobre o turborepo](#sobre-o-turborepo)
+      - [Build](#build)
+      - [Develop](#develop)
+      - [Remote Caching](#remote-caching)
+      - [Links Úteis](#links-úteis)
 
-Run the following command:
+## Executar o projeto
+
+- Entrar na pasta do backend
+
+```bash
+cd apps/backend
+```
+
+- Rodar o comando do docker (me baseando no meu SO que é linux)
+
+```bash
+ sudo docker-compose up
+```
+
+- Gerar o Prisma Client e fazer a migration
+
+```bash
+ npx prisma generate --schema=./prisma/schema.prisma
+ npx prisma migrate dev
+```
+
+Depois desses comandos, é só voltar para a raiz do projeto
+
+```bash
+ cd ..
+ cd ..
+```
+
+- E rodar os comandos
+
+```bash
+ npm install
+ npm run dev
+```
+
+<br><br>
+
+### Sobre o turborepo
+
+#### Build
+
+Para compilar todos os aplicativos e pacotes, execute o seguinte comando:
 
 ```sh
-npx create-turbo@latest
+ cd my-turborepo
+ npm build
 ```
 
-## What's inside?
+#### Develop
 
-This Turborepo includes the following packages/apps:
+Para desenvolver todos os aplicativos e pacotes, execute o seguinte comando:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
-
-
-## Comandos para rodar o projeto
-
-### Subir o container docker
-- Entrar na pasta do backend
 ```bash
-    cd apps/backend
+ cd my-turborepo
+ npm dev
 ```
-- Rodar o comando do docker (me baseando no meu SO que é linux)
+
+#### Remote Caching
+
+O Turborepo pode usar uma técnica conhecida como [Cache Remoto](https://turbo.build/repo/docs/core-concepts/remote-caching) para compartilhar artefatos de cache entre máquinas, permitindo que você compartilhe caches de construção com sua equipe e pipelines de CI/CD.
+
+Por padrão, o Turborepo armazenará em cache localmente. Para ativar o Cache Remoto, você precisará de uma conta no Vercel. Se você não possui uma conta, você pode [criar uma](https://vercel.com/signup), e depois inserir os seguintes comandos:
+
 ```bash
-    sudo docker-compose up
+ cd my-turborepo
+ npx turbo login
 ```
-- Gerar o schema do prisma e instalar o prisma client
+
+Isso autenticará a CLI do Turborepo com sua [conta Vercel](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Em seguida, você pode vincular seu Turborepo ao Cache Remoto executando o seguinte comando na raiz do seu Turborepo:
+
 ```bash
-    npx  prisma generate --schema=./prisma/schema.prisma
-    npx prisma migrate dev
+ npx turbo link
 ```
-Depopis desses comandos é só voltar para a raiz do projeto
-```bash
-    cd ..
-    cd ..
-```
-E rodar os comandos 
-```bash
-    npm install
-    npm run dev
-```
+
+#### Links Úteis
+
+Saiba mais sobre o poder do Turborepo:
+
+- [Tarefas](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+- [Cache](https://turbo.build/repo/docs/core-concepts/caching)
+- [Cache Remoto](https://turbo.build/repo/docs/core-concepts/remote-caching)
+- [Filtragem](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+- [Opções de Configuração](https://turbo.build/repo/docs/reference/configuration)
+- [Uso da CLI](https://turbo.build/repo/docs/reference/command-line-reference)
