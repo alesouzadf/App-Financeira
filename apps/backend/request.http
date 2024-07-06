@@ -1,0 +1,13 @@
+// Criar uma transação
+POST http://localhost:4000/transaction/registrar
+Content-Type: application/json
+
+{
+    "value":100.92, 
+    "description":"Conta de luz 2", 
+    "type":"RECEITA", 
+    "status":"PENDENTE"
+}
+###
+// Listar todas as transações
+GET http://localhost:4000/transaction/listar
