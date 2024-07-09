@@ -10,9 +10,6 @@ type Entrada = {
     status?: string
 }
 
-console.log(new Intl.RelativeTimeFormat("pt-BR"))
-console.log(new Date())
-
 export default class EditarTransaction implements CasoDeUso<Entrada, boolean> {
     constructor(
         private readonly repo: RepositorioTransaction
