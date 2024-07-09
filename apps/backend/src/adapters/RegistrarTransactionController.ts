@@ -12,8 +12,8 @@ export default class RegistrarTransactionController {
             try {
                 const { value, description, type, status } = req.body
                 const facade = new TransactionFacade(repo)
-                await facade.registrar({ value, description, type, status})
-                res.status(201).json({})
+                await facade.registrar({ value, description, type, status })
+                res.status(201).json({ message: "Transação cadastrada!" })
             } catch (e: any) {
                 res.status(400).send(Erros.tratar(e))
             }
