@@ -2,27 +2,31 @@ import { PrismaClient } from '@prisma/client'
 import { RepositorioTransaction, Transaction } from 'core'
 
 export default class RepositorioTransactionPrisma implements RepositorioTransaction {
-    private readonly prisma = new PrismaClient()
-   
-    obterPorId(id: number): Promise<Transaction | null> {
-      throw new Error('Method not implemented.')
-    }
-    
-    async buscarTudo(): Promise<Transaction[]> {
-     const transactions = await this.prisma.transaction.findMany()
-     return transactions as any
-    //  throw new Error("Method not implemented.");
+  private readonly prisma = new PrismaClient()
+
+  async obterPorId(id: number): Promise<Transaction | null> {
+    const transactionData = await this.prisma.transaction.findUnique({ where: { id } })
+
+    if (!transactionData) {
+      throw new Error(`Transacão com o id ${id} não encontrado`)
     }
 
-    async salvar(transaction: Transaction): Promise<Transaction> {
-        const newTransaction = await this.prisma.transaction.upsert({
-          where: { id:  -1 },
-          update: transaction.props,
-          create: transaction.props as any,
-      })
-        return new Transaction(newTransaction)  
-    }
+    return new Transaction(transactionData)
+  }
 
+  async buscarTudo(): Promise<Transaction[]> {
+    const transactions = await this.prisma.transaction.findMany()
+    return transactions as any
+  }
+
+  async salvar(transaction: Transaction): Promise<Transaction> {
+    const newTransaction = await this.prisma.transaction.upsert({
+      where: { id: transaction.id },
+      update: transaction.props,
+      create: transaction.props as any,
+    })
+    return new Transaction(newTransaction)
+  }
 
   update(id: number): Promise<Transaction> {
     throw new Error("Method not implemented.");

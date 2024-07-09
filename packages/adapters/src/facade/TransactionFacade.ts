@@ -1,7 +1,8 @@
-import { RepositorioTransaction, RegistrarTransaction, Transaction, ListarTransaction } from "core";
+import { RepositorioTransaction, RegistrarTransaction, Transaction, ListarTransaction, EditarTransaction } from "core";
 import { TransactionDTO } from "../dto";
 
-export default class UsuarioFacade {
+
+export default class TransactionFacade {
     constructor(
         private readonly repo?: RepositorioTransaction
     ){}
@@ -22,4 +23,12 @@ export default class UsuarioFacade {
 
         return transaction ?? null
     }
+
+
+    async editar(id: number, data: TransactionDTO): Promise<Transaction | boolean> {
+        const casoDeUso = new EditarTransaction(this.repo!)
+        await casoDeUso.executar({ id, ...data })
+        return true
+    }
+
 }
