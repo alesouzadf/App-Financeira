@@ -20,10 +20,11 @@ export default class RegistrarUser implements CasoDeUso<Entrada, void> {
     async executar(entrada: Entrada): Promise<void> {
         const { name, email, password } = entrada
         const senhaForte = new SenhaForte(password)
-
+        console.log(senhaForte.valor)
         const senhaCripto = this.provedorCripto.criptografar(senhaForte.valor)
+        console.log(senhaCripto)
         const novoUsuario = new User({ name, email, password: senhaCripto })
-
+        console.log(email)
         const usuarioExistente = await this.repo.getByEmail(email)
         Validador.valor(usuarioExistente?.email.valor)
             .nulo('USUARIO_JA_EXISTE')

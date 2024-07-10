@@ -5,12 +5,14 @@ import SenhaHash from "../../shared/SenhaHash";
 
 
 export interface UserProps {
+    id?: number
     name?: string
     email?: string
     password?: string
 }
 
 export default class User extends Entidade<User, UserProps> {
+    readonly id: number = 0
     readonly name: NameUser
     readonly email: Email
     readonly password: SenhaHash | null

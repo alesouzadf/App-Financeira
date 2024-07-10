@@ -1,4 +1,4 @@
-import { LoginUser, RegistrarUsuario, RepositoryUser, CryptoProvider } from 'core'
+import { LoginUser, RegistrarUsuario, RepositoryUser, CryptoProvider, User, ListarUser } from 'core'
 import { UserDTO } from '..'
 
 export default class UsuarioFacade {
@@ -15,6 +15,14 @@ export default class UsuarioFacade {
             password: dto.password!,
         })
     }
+
+    async listar(): Promise<User[]>{
+        const casoDeUso = new ListarUser(this.repo!)
+        const usuarios = casoDeUso.executar()
+
+        return usuarios ?? null
+    }
+
 
     async login(dto: UserDTO): Promise<UserDTO> {
         const casoDeUso = new LoginUser(this.repo!, this.provedorCriptografia!)
