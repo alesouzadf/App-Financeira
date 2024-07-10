@@ -1,3 +1,4 @@
 import TransactionDTO from "./TransactionDTO";
+import UserDTO from "./UserDTO";
 
-export type {TransactionDTO}
+export type { TransactionDTO, UserDTO }

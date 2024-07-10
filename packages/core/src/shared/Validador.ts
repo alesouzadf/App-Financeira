@@ -6,7 +6,7 @@ export default class Validador {
         readonly atributo: string | null,
         readonly objeto: string | null,
         readonly erros: ErroValidacao[] = []
-    ) {}
+    ) { }
 
     static valor(valor: any, atributo?: string, objeto?: string): Validador {
         return new Validador(valor, atributo ?? null, objeto ?? null)
@@ -45,14 +45,14 @@ export default class Validador {
 
     status(erro: string = "STATUS_INVALIDO"): Validador {
         const validador = this.naoNulo(erro)
-        
+
         let statusValido: boolean = false
-        
-        if(this.valor === 'PENDENTE'){
+
+        if (this.valor === 'PENDENTE') {
             statusValido = true
-        } else if (this.valor === 'CONSOLIDADO'){
+        } else if (this.valor === 'CONSOLIDADO') {
             statusValido = true
-        } else if (this.valor === 'CANCELADO'){
+        } else if (this.valor === 'CANCELADO') {
             statusValido = true
         }
 
@@ -61,15 +61,15 @@ export default class Validador {
 
     tipo(erro: string = "TIPO_INVALIDO"): Validador {
         const validador = this.naoNulo(erro)
-        
+
         let tipoValido: boolean = false
-        
-        if(this.valor === 'DESPESA'){
+
+        if (this.valor === 'DESPESA') {
             tipoValido = true
-        } else if (this.valor === 'RECEITA'){
+        } else if (this.valor === 'RECEITA') {
             tipoValido = true
         }
-        
+
         return tipoValido ? validador : validador.adicionarErro(erro)
     }
 
@@ -133,6 +133,22 @@ export default class Validador {
     }
 
     regex(regex: RegExp, erro: string): Validador {
+        return regex.test(this.valor) ? this : this.adicionarErro(erro)
+    }
+
+    email(erro: string = "EMAIL_INVALIDO"): Validador {
+        const regex =
+            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
+        return regex.test(this.valor) ? this : this.adicionarErro(erro)
+    }
+
+    senhaHash(erro: string = "HASH_INVALIDO"): Validador {
+        const regex = /^\$2[ayb]\$[0-9]{2}\$[A-Za-z0-9\.\/]{53}$/
+        return regex.test(this.valor) ? this : this.adicionarErro(erro)
+    }
+
+    senhaForte(erro: string = "SENHA_FRACA"): Validador {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
         return regex.test(this.valor) ? this : this.adicionarErro(erro)
     }
 
