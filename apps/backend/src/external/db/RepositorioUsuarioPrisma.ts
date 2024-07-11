@@ -12,7 +12,7 @@ export default class RepositorioUsuarioPrisma implements RepositoryUser {
   
   async save(Usuario: User): Promise<User> {
     const newUsuario = await this.prisma.user.upsert({
-      where: { id: Usuario.id },
+      where: { id: Usuario.id ?? -1  },
       update: Usuario.props,
       create: Usuario.props as any,
     })
@@ -29,8 +29,14 @@ export default class RepositorioUsuarioPrisma implements RepositoryUser {
     return new User(UsuarioData)
   }
   
-  getByEmail(email: string): Promise<User | null> {
-    throw new Error('Method not implemented.')
+  async getByEmail(email: string): Promise<User | null> {
+    const UsuarioData = await this.prisma.user.findUnique({ where: { email } })
+    
+    if (!UsuarioData) {
+      return null
+    }
+    
+    return new User(UsuarioData)
   }
 
   update(id: number): Promise<User> {
