@@ -14,8 +14,12 @@ export default class RepositorioTransactionPrisma implements RepositorioTransact
     return new Transaction(transactionData)
   }
 
-  async buscarTudo(): Promise<Transaction[]> {
-    const transactions = await this.prisma.transaction.findMany()
+  async buscarTudo(userId: number): Promise<Transaction[]> {
+    const transactions = await this.prisma.transaction.findMany({
+      where: {
+        userId: userId
+      }
+    })
     return transactions as any
   }
 

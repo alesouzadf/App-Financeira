@@ -12,6 +12,7 @@ import RepositorioUsuarioPrisma from './external/db/RepositorioUsuarioPrisma'
 import ProvedorCriptografiaBcrypt from './external/auth/ProvedorCriptografiaBcript'
 import LoginUserController from './adapters/LoginUserController'
 import ProvedorJWT from './external/auth/ProvedorJWT'
+import UsuarioMiddleware from './adapters/UserMiddleware'
 
 
 // ----------------------------------- Dependências
@@ -22,10 +23,17 @@ const provedorCripto = new ProvedorCriptografiaBcrypt()
 const provedorJWT = new ProvedorJWT(process.env.JWT_SECRET!)
 
 // ----------------------------------- Rotas Abertas
-
-new RegistrarTransactionController(app, repoTransaction)
-new ListarTransactionController(app, repoTransaction)
-new EditarTransactionController(app, repoTransaction)
 new RegistrarUserController(app, repoUser, provedorCripto)
 new ListarUserController(app, repoUser)
 new LoginUserController(app, repoUser, provedorCripto, provedorJWT)
+
+
+// ----------------------------------- Rotas Fechadas
+const usuarioMiddleware = UsuarioMiddleware({
+    repoUser,
+    provedorJWT,
+})
+
+new RegistrarTransactionController(app, repoTransaction, usuarioMiddleware)
+new ListarTransactionController(app, repoTransaction, usuarioMiddleware)
+new EditarTransactionController(app, repoTransaction)

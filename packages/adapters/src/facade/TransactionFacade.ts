@@ -2,14 +2,16 @@ import { RepositorioTransaction, RegistrarTransaction, Transaction, ListarTransa
 import { TransactionDTO } from "../dto";
 
 
+
 export default class TransactionFacade {
     constructor(
         private readonly repo?: RepositorioTransaction
-    ){}
+    ) { }
 
-    async registrar(dto: TransactionDTO): Promise<void>{
+    async registrar(dto: TransactionDTO): Promise<void> {
         const casoDeUso = new RegistrarTransaction(this.repo!)
         await casoDeUso.executar({
+            userId: dto.userId!,
             value: dto.value!,
             description: dto.description!,
             type: dto.type!,
@@ -17,9 +19,9 @@ export default class TransactionFacade {
         })
     }
 
-    async listar(): Promise<Transaction[]>{
+    async listar(userId: number): Promise<Transaction[]> {
         const casoDeUso = new ListarTransaction(this.repo!)
-        const transaction = casoDeUso.executar()
+        const transaction = casoDeUso.executar(userId)
 
         return transaction ?? null
     }
