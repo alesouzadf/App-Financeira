@@ -11,7 +11,7 @@ export interface TransactionProps {
   type?: string
   status?: string
   createdAt?: Date
-  userId?: number
+  userId: number
 }
 
 

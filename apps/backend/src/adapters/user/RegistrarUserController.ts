@@ -1,7 +1,7 @@
 
 import {CryptoProvider, RepositoryUser } from 'core'
 import { Express } from 'express'
-import Erros from '../utils/Erros'
+import Erros from '../../utils/Erros'
 import { UsuarioFacade } from 'adapters'
 
 export default class RegistrarUserController {

@@ -1,22 +1,21 @@
 import { TransactionFacade } from 'adapters'
 import { RepositorioTransaction } from 'core'
 import { Express } from 'express'
-import Erros from '../utils/Erros'
+import Erros from '../../utils/Erros'
 
-export default class EditarTransactionController {
+export default class RegistrarTransactionController {
     constructor(
         readonly servidor: Express,
         readonly repo: RepositorioTransaction,
+        ...middleware: any[]
     ) {
-        servidor.post('/transaction/editar/:id', async (req, res) => {
+        servidor.post('/transaction/registrar', ...middleware, async (req, res) => {
             try {
-                const id = +req.params.id
                 const { value, description, type, status } = req.body
+                const userId = (req as any).usuario.id
                 const facade = new TransactionFacade(repo)
-                await facade.editar(id, {
-                    value, description, type, status
-                })
-                res.status(201).json({ message: "Transação atualizada!" })
+                await facade.registrar({ userId, value, description, type, status })
+                res.status(201).json({ message: "Transação cadastrada!" })
             } catch (e: any) {
                 res.status(400).send(Erros.tratar(e))
             }

@@ -1,7 +1,7 @@
 import { TransactionFacade } from 'adapters'
 import { RepositorioTransaction } from 'core'
 import { Express } from 'express'
-import Erros from '../utils/Erros'
+import Erros from '../../utils/Erros'
 
 export default class ListarTransactionController {
     constructor(
