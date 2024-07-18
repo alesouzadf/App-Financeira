@@ -9,7 +9,7 @@ export default class EditarTransactionController {
     readonly repo: RepositorioTransaction,
     ...middleware: any[]
   ) {
-    servidor.post(
+    servidor.put(
       "/transaction/editar/:id",
       ...middleware,
       async (req, res) => {
