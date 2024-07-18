@@ -25,7 +25,6 @@ const provedorJWT = new ProvedorJWT(process.env.JWT_SECRET!);
 
 // ----------------------------------- Rotas Abertas
 new RegistrarUserController(app, repoUser, provedorCripto);
-new ListarUserController(app, repoUser);
 new LoginUserController(app, repoUser, provedorCripto, provedorJWT);
 
 // ----------------------------------- Rotas Fechadas
@@ -34,6 +33,7 @@ const usuarioMiddleware = UsuarioMiddleware({
   provedorJWT,
 });
 
+new ListarUserController(app, repoUser, usuarioMiddleware);
 new RegistrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new ListarTransactionController(app, repoTransaction, usuarioMiddleware);
 new EditarTransactionController(app, repoTransaction, usuarioMiddleware);
