@@ -5,23 +5,33 @@ export default class RepositorioTransactionPrisma
   implements RepositorioTransaction
 {
   private readonly prisma = new PrismaClient();
-
+  
   async obterPorId(id: number): Promise<Transaction | null> {
     const transactionData = await this.prisma.transaction.findUnique({
       where: {id},
     });
-
+    
     if (!transactionData) {
       throw new Error(`Transacão com o id ${id} não encontrado`);
     }
-
+    
     return new Transaction(transactionData);
   }
-
+  
   async buscarTudo(userId: number): Promise<Transaction[]> {
     const transactions = await this.prisma.transaction.findMany({
       where: {
         userId: userId,
+      },
+    });
+    return transactions as any;
+  }
+  
+  async filtrarPorStatus(status: string, userId: number): Promise<Transaction[]> {
+    const transactions = await this.prisma.transaction.findMany({
+      where: {
+        status: status,
+        userId: userId
       },
     });
     return transactions as any;

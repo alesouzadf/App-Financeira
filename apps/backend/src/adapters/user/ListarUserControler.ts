@@ -7,8 +7,9 @@ export default class ListarUserController {
   constructor(
       readonly servidor: Express,
       readonly repo: RepositoryUser,
+      ...middleware: any[]
   ) {
-      servidor.get('/user/listar', async (req, res) => {
+      servidor.get('/user/listar', ...middleware, async (req, res) => {
           try {
               const facade = new UsuarioFacade(repo)
               const usuarios = await facade.listar()
