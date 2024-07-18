@@ -1,5 +1,11 @@
-import { RepositorioTransaction, RegistrarTransaction, Transaction, ListarTransaction, EditarTransaction } from "core";
-import { TransactionDTO } from "../dto";
+import { 
+    RepositorioTransaction,
+    RegistrarTransaction,
+    Transaction,
+    ListarTransaction, 
+    FiltrarTransaction,
+    EditarTransaction } from "core";
+import { TransactionDTO, FiltroDTO } from "../dto";
 
 
 
@@ -26,11 +32,16 @@ export default class TransactionFacade {
         return transaction ?? null
     }
 
-
     async editar(id: number, data: TransactionDTO): Promise<Transaction | boolean> {
         const casoDeUso = new EditarTransaction(this.repo!)
         await casoDeUso.executar({ id, ...data })
         return true
     }
 
+    async filtrar(data: FiltroDTO): Promise<Transaction[]> {
+        const casoDeUso = new FiltrarTransaction(this.repo!)
+        const transaction = casoDeUso.executar({...data })
+
+        return transaction ?? null
+    }
 }

@@ -11,10 +11,9 @@ import RegistrarTransactionController from "./adapters/transaction/RegistrarTran
 import ListarTransactionController from "./adapters/transaction/ListarTransactionControler";
 import RepositorioTransactionPrisma from "./external/db/RepositorioTransactionPrisma";
 import EditarTransactionController from "./adapters/transaction/EditarTransactionController";
-
 import ProvedorCriptografiaBcrypt from "./external/auth/ProvedorCriptografiaBcript";
-
 import UsuarioMiddleware from "./adapters/UserMiddleware";
+import FiltrarTransactionController from "./adapters/transaction/FiltrarTransactionController";
 
 // ----------------------------------- Dependências
 
@@ -36,4 +35,5 @@ const usuarioMiddleware = UsuarioMiddleware({
 new ListarUserController(app, repoUser, usuarioMiddleware);
 new RegistrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new ListarTransactionController(app, repoTransaction, usuarioMiddleware);
+new FiltrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new EditarTransactionController(app, repoTransaction, usuarioMiddleware);
