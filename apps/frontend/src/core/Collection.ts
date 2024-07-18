@@ -1,0 +1,46 @@
+import Request from "./Request";
+
+export default class Collection {
+  async save(
+    description: string,
+    value: number,
+    type: string,
+    status: string,
+    id: string
+  ) {
+    let data;
+    if (id) {
+      data = await Request.put(`/transaction/editar/${id}`, {
+        description,
+        value,
+        type,
+        status,
+        id,
+      });
+    } else {
+      data = await Request.post("/transaction/registrar", {
+        description,
+        value: Number(value),
+        type,
+        status,
+      });
+    }
+    console.log("DATA", data);
+    return data;
+  }
+
+  async delete(id: string) {
+    const data = await Request.delete(`/transaction/${id}`);
+    return data;
+  }
+
+  async getAll() {
+    const data = await Request.get(`/transaction/listar`);
+    return data;
+  }
+
+  async getById(id: string) {
+    const data = await Request.get(`/transaction/${id}`);
+    return data;
+  }
+}
