@@ -1,31 +1,49 @@
-import { PrismaClient } from '@prisma/client'
-import { RepositorioTransaction, Transaction } from 'core'
+import {PrismaClient} from "@prisma/client";
+import {RepositorioTransaction, Transaction} from "core";
 
-export default class RepositorioTransactionPrisma implements RepositorioTransaction {
-  private readonly prisma = new PrismaClient()
-
+export default class RepositorioTransactionPrisma
+  implements RepositorioTransaction
+{
+  private readonly prisma = new PrismaClient();
+  
   async obterPorId(id: number): Promise<Transaction | null> {
-    const transactionData = await this.prisma.transaction.findUnique({ where: { id } })
-
+    const transactionData = await this.prisma.transaction.findUnique({
+      where: {id},
+    });
+    
     if (!transactionData) {
-      throw new Error(`Transacão com o id ${id} não encontrado`)
+      throw new Error(`Transacão com o id ${id} não encontrado`);
     }
-
-    return new Transaction(transactionData)
+    
+    return new Transaction(transactionData);
   }
-
-  async buscarTudo(): Promise<Transaction[]> {
-    const transactions = await this.prisma.transaction.findMany()
-    return transactions as any
+  
+  async buscarTudo(userId: number): Promise<Transaction[]> {
+    const transactions = await this.prisma.transaction.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+    return transactions as any;
+  }
+  
+  async filtrarPorStatus(status: string, userId: number): Promise<Transaction[]> {
+    const transactions = await this.prisma.transaction.findMany({
+      where: {
+        status: status,
+        userId: userId
+      },
+    });
+    return transactions as any;
   }
 
   async salvar(transaction: Transaction): Promise<Transaction> {
     const newTransaction = await this.prisma.transaction.upsert({
-      where: { id: transaction.id },
+      where: {id: transaction.id},
       update: transaction.props,
       create: transaction.props as any,
-    })
-    return new Transaction(newTransaction)
+    });
+    return new Transaction(newTransaction);
   }
 
   update(id: number): Promise<Transaction> {

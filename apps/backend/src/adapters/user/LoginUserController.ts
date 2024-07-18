@@ -1,8 +1,8 @@
 import { UsuarioFacade } from 'adapters'
 import { CryptoProvider, RepositoryUser } from 'core'
 import { Express } from 'express'
-import Erros from '../utils/Erros'
-import ProvedorJWT from '../external/auth/ProvedorJWT'
+import Erros from '../../utils/Erros'
+import ProvedorJWT from '../../external/auth/ProvedorJWT'
 
 export default class LoginUsuarioController {
     constructor(

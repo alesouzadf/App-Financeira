@@ -1,14 +1,15 @@
 import { UsuarioFacade } from 'adapters'
 import { RepositoryUser } from 'core'
 import { Express } from 'express'
-import Erros from '../utils/Erros'
+import Erros from '../../utils/Erros'
 
 export default class ListarUserController {
   constructor(
       readonly servidor: Express,
       readonly repo: RepositoryUser,
+      ...middleware: any[]
   ) {
-      servidor.get('/user/listar', async (req, res) => {
+      servidor.get('/user/listar', ...middleware, async (req, res) => {
           try {
               const facade = new UsuarioFacade(repo)
               const usuarios = await facade.listar()
