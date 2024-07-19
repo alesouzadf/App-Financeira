@@ -16,7 +16,7 @@ export default class EditarTransaction implements CasoDeUso<Entrada, boolean> {
 
   async executar(entrada: Entrada): Promise<boolean> {
     const {id, userId, value, description, type, status} = entrada;
-    const transaction = await this.repo.obterPorId(id);
+    const transaction = await this.repo.obterPorId(userId, id);
     if (transaction) {
       const newTransaction = new Transaction({
         id,

@@ -5,19 +5,19 @@ export default class RepositorioTransactionPrisma
   implements RepositorioTransaction
 {
   private readonly prisma = new PrismaClient();
-  
-  async obterPorId(id: number): Promise<Transaction | null> {
+
+  async obterPorId(userId: number, id: number): Promise<Transaction> {
     const transactionData = await this.prisma.transaction.findUnique({
-      where: {id},
+      where: {userId, id},
     });
-    
+
     if (!transactionData) {
       throw new Error(`Transacão com o id ${id} não encontrado`);
     }
-    
+
     return new Transaction(transactionData);
   }
-  
+
   async buscarTudo(userId: number): Promise<Transaction[]> {
     const transactions = await this.prisma.transaction.findMany({
       where: {
@@ -26,12 +26,15 @@ export default class RepositorioTransactionPrisma
     });
     return transactions as any;
   }
-  
-  async filtrarPorStatus(status: string, userId: number): Promise<Transaction[]> {
+
+  async filtrarPorStatus(
+    status: string,
+    userId: number
+  ): Promise<Transaction[]> {
     const transactions = await this.prisma.transaction.findMany({
       where: {
         status: status,
-        userId: userId
+        userId: userId,
       },
     });
     return transactions as any;

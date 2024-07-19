@@ -14,6 +14,7 @@ import EditarTransactionController from "./adapters/transaction/EditarTransactio
 import ProvedorCriptografiaBcrypt from "./external/auth/ProvedorCriptografiaBcript";
 import UsuarioMiddleware from "./adapters/UserMiddleware";
 import FiltrarTransactionController from "./adapters/transaction/FiltrarTransactionController";
+import PegarTransactionByIdController from "./adapters/transaction/PegarTransactionByIdController";
 
 // ----------------------------------- Dependências
 
@@ -37,3 +38,4 @@ new RegistrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new ListarTransactionController(app, repoTransaction, usuarioMiddleware);
 new FiltrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new EditarTransactionController(app, repoTransaction, usuarioMiddleware);
+new PegarTransactionByIdController(app, repoTransaction, usuarioMiddleware);
