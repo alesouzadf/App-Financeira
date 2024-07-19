@@ -15,7 +15,7 @@ export default function Links(props: LinksProps) {
   const {items, filterByStatus, getAll} = useItem();
   const [status, setStatus] = useState("");
   const router = useRouter();
-
+  
   function handleRedirectNew() {
     router.push("/New");
   }
@@ -23,7 +23,7 @@ export default function Links(props: LinksProps) {
   function handleFilter(e: any) {
     const inputStatus = e.target.value;
     if (!inputStatus) {
-      setStatus("")
+      setStatus("");
       getAll();
       return;
     }
@@ -34,9 +34,9 @@ export default function Links(props: LinksProps) {
   return (
     <Layout title="Lista de links" className="flex flex-col ">
       <div className="flex justify-between items-center p-10 ">
-        <div className="flex flex-col ">
+        <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-semibold">Minhas Finanças</h1>
-          <p className="text-sm">Você tem 1 registro(s)</p>
+          <p className="text-sm">{`Você tem ${items?.length} registro(s)`}</p>
         </div>
         <div className="flex gap-4 items-center">
           <Select
