@@ -35,6 +35,11 @@ export default function useItem() {
     getAll();
   }
 
+  async function filterByStatus(status: string) {
+    const data = await repo.getByStatus(status);
+    setItem(data);
+  }
+
   async function saveItem(
     description: string,
     value: number,
@@ -52,5 +57,6 @@ export default function useItem() {
     deleteItem,
     getAll,
     getById,
+    filterByStatus,
   };
 }

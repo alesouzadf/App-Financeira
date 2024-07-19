@@ -1,25 +1,34 @@
 import Layout from "@/components/Layout";
 import {IconPlus} from "@tabler/icons-react";
 import {useRouter} from "next/router";
-import useBoolean from "@/hooks/useBoolean";
-import Image from "next/image";
 import Select from "@/components/Select";
 import {statusSelect} from "@/data/status";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import {useState} from "react";
+import {stat} from "fs";
+import useItem from "@/hooks/useItem";
 
 interface LinksProps {}
 
 export default function Links(props: LinksProps) {
-  const [activeEdition, toggleActive] = useBoolean(false);
+  const {items, filterByStatus, getAll} = useItem();
+  const [status, setStatus] = useState("");
   const router = useRouter();
 
   function handleRedirectNew() {
     router.push("/New");
   }
 
-  function handleToAllowEdition() {
-    toggleActive();
+  function handleFilter(e: any) {
+    const inputStatus = e.target.value;
+    if (!inputStatus) {
+      setStatus("")
+      getAll();
+      return;
+    }
+    setStatus(inputStatus);
+    filterByStatus(inputStatus);
   }
 
   return (
@@ -31,10 +40,11 @@ export default function Links(props: LinksProps) {
         </div>
         <div className="flex gap-4 items-center">
           <Select
+            valueSelect={status}
             nameSelect="filterByStatus"
             option={<option value="">Filtrar por Status</option>}
             data={statusSelect}
-            onChange={() => console.log("Filtrar")}
+            onChange={handleFilter}
             className="bg-transparent"
           />
           <Button
@@ -54,7 +64,7 @@ export default function Links(props: LinksProps) {
         </div>
       </div>
       <section className="flex gap-6 flex-wrap  p-10">
-        <Card />
+        <Card data={items} />
       </section>
     </Layout>
   );

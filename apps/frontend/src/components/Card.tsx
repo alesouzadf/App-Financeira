@@ -11,13 +11,14 @@ import Image from "next/image";
 import Button from "./Button";
 import {useRouter} from "next/navigation";
 
-interface CardProps {}
+interface CardProps {
+  data: any;
+}
 
 export default function Card(props: CardProps) {
+  const {data} = props;
   const router = useRouter();
-  const {items, deleteItem} = useItem();
   const [loading, setLoading] = useState(true);
-
   function formatedDate(date: string) {
     const newDate = new Date(date);
     const day = newDate.getDate();
@@ -35,11 +36,11 @@ export default function Card(props: CardProps) {
   }
 
   function renderData() {
-    if (!items) {
+    if (!data) {
       return <Load loading={loading} className="text-center" />;
     }
 
-    if (items?.length === 0) {
+    if (data?.length === 0) {
       return (
         <div className="container m-auto flex flex-col justify-center items-center mt-20 gap-8">
           <Image
@@ -61,7 +62,7 @@ export default function Card(props: CardProps) {
       );
     }
 
-    return items.map((item) => {
+    return data.map((item: any) => {
       return (
         <div
           key={item.id}

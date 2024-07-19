@@ -38,6 +38,11 @@ export default class Collection {
     return data;
   }
 
+  async getByStatus(status: string) {
+    const data = await Request.get(`/transaction/filtrar/${status}`);
+    return data;
+  }
+
   async getById(id: string) {
     const data = await Request.get(`/transaction/${id}`);
     return data;
