@@ -34,7 +34,6 @@ export default class Request {
   }
 
   static async post(complementURL: string, dataBody: any) {
-    console.log(complementURL, dataBody);
     const result = await Request.genericRequest(
       "POST",
       complementURL,

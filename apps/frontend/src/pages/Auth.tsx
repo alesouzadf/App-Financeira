@@ -39,7 +39,6 @@ export default function Auth() {
     const dataToCheck = {name, email, password};
     try {
       const response = await Request.post("/user/registrar", dataToCheck);
-      console.log(response);
       if (response.status) {
         alert(
           "Erro ao cadastar! Verifique os dados ou confirme se já tem perfil criado"
@@ -87,15 +86,10 @@ export default function Auth() {
       >
         <div className="w-full ">
           <div className="flex gap-6 mb-6 justify-between">
-            <Button color="green" onClick={handleClickBtnLogin} widthFull>
+            <Button color="purple" onClick={handleClickBtnLogin} widthFull>
               Login
             </Button>
-            <Button
-              color="cyan"
-              className="bg-cy"
-              onClick={handleClickBtnCreate}
-              widthFull
-            >
+            <Button color="cyan" onClick={handleClickBtnCreate} widthFull>
               Registar
             </Button>
           </div>
@@ -132,8 +126,8 @@ export default function Auth() {
               valueChange={setPassword}
             />
             <Button
-              color={action === "login" ? "green" : "cyan"}
-              className={`mt-4 ${loading ?? "pointer-events-none"}`}
+              color={action === "login" ? "purple" : "cyan"}
+              className={`mt-4  ${loading ?? "pointer-events-none"}`}
             >
               {action === "login" ? "Login" : "Criar"}
             </Button>

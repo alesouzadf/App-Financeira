@@ -1,6 +1,5 @@
-import {IconCurrency, IconCurrencyDollar, IconCurrencyReal} from "@tabler/icons-react";
-import Logo from "./Logo";
-import Menu from "./Menu";
+import {IconCurrencyDollar, IconCurrencyReal} from "@tabler/icons-react";
+import Image from "next/image";
 
 interface SidebarProps {
   className?: string;
@@ -14,7 +13,13 @@ export default function Sidebar(props: SidebarProps) {
     ${props.className}`}
     >
       <div className="bg-purple-500 h-36 rounded-r-3xl flex justify-center items-center">
-        <IconCurrencyDollar size={80} stroke={3} className="text-white rotate-12"/>
+        <Image
+          src="/assets/Vector.png"
+          width={50}
+          height={50}
+          alt=""
+          className="text-white rotate-12"
+        />
       </div>
     </div>
   );

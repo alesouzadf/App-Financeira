@@ -22,7 +22,9 @@ export default function Form(props: FormProps) {
   useEffect(() => {
     (async () => {
       if (props.id) {
+        console.log(props.id);
         const item = await getById(props.id);
+        console.log(item);
         setDescription(item.description);
         setValue(item.value);
         setType(item.type);

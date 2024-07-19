@@ -17,7 +17,7 @@ interface InputProps {
 export default function Input(props: InputProps) {
   return (
     <div className={`flex flex-col ${props.className}`}>
-      <Label text={props.text} label={props.label} />
+      <Label text={props.text} label={props.label}  className="mt-2"/>
       <input
         id={props.label}
         type={props.type ?? "text"}

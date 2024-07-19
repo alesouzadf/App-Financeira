@@ -4,19 +4,35 @@ import {
   IconTrendingUp,
 } from "@tabler/icons-react";
 import useItem from "@/hooks/useItem";
+import getNameMonth from "@/data/months";
 import Load from "./Load";
 import {useState} from "react";
 import Image from "next/image";
+import Button from "./Button";
+import {useRouter} from "next/navigation";
 
-interface CardProps {
-  // allowEdition: boolean;
-}
+interface CardProps {}
 
 export default function Card(props: CardProps) {
+  const router = useRouter();
   const {items, deleteItem} = useItem();
   const [loading, setLoading] = useState(true);
 
-  console.log(items);
+  function formatedDate(date: string) {
+    const newDate = new Date(date);
+    const day = newDate.getDate();
+    const month = getNameMonth(newDate.getMonth());
+    const year = newDate.getFullYear();
+    const formatted = `${day} ${month} ${year}`;
+    return formatted;
+  }
+
+  function currencyFormat(currency: number) {
+    return new Intl.NumberFormat("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    }).format(currency);
+  }
 
   function renderData() {
     if (!items) {
@@ -25,7 +41,7 @@ export default function Card(props: CardProps) {
 
     if (items?.length === 0) {
       return (
-        <div className=" flex flex-col justify-center items-center mt-20 gap-8">
+        <div className="container m-auto flex flex-col justify-center items-center mt-20 gap-8">
           <Image
             src="/assets/vazio.png"
             width={400}
@@ -49,24 +65,26 @@ export default function Card(props: CardProps) {
       return (
         <div
           key={item.id}
-          className="flex justify-between bg-zinc-900  w-[65vw] m-auto p-4 rounded-md "
+          className="flex justify-between bg-zinc-900 w-full p-4 rounded-md "
         >
-          <div className="flex  gap-4">
-            <p>{item.id}</p>
-            <p>{item.createdAt}</p>
-            <h3>{item.description}</h3>
+          <div className="flex  items-center gap-4">
+            <p>{`#${item.id}`}</p>
+            <p className="text-base text-zinc-400">
+              {formatedDate(item.createdAt)}
+            </p>
+            <h3 className="text-base">{item.description}</h3>
           </div>
-          <div className="flex  gap-4">
+          <div className="flex items-center gap-4">
             <p className="flex  items-center gap-2">
               {item.type === "RECEITA" ? (
                 <IconTrendingUp className="text-green-500" />
               ) : (
                 <IconTrendingDown className="text-red-500" />
               )}
-              {item.value}
+              {currencyFormat(item.value)}
             </p>
             <p
-              className={`px-3 py-1 rounded-sm text-sm font-medium capitalize 
+              className={`px-3 py-1 rounded-sm text-sm font-medium capitalize w-36 text-center list-item list-inside
               ${item.status === "CANCELADO" ? "bg-red-950 text-red-400 " : ""}
               ${item.status === "CONSOLIDADO" ? "bg-green-950 text-green-400 " : ""} 
               ${item.status === "PENDENTE" ? "bg-yellow-950 text-yellow-400" : ""}
@@ -74,9 +92,9 @@ export default function Card(props: CardProps) {
             >
               {item.status}
             </p>
-            <button>
+            <Button onClick={() => router.push(`/Edit/${item.id}`)}>
               <IconChevronRight />
-            </button>
+            </Button>
           </div>
         </div>
       );

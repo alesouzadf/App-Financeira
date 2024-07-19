@@ -6,6 +6,7 @@ import Image from "next/image";
 import Select from "@/components/Select";
 import {statusSelect} from "@/data/status";
 import Card from "@/components/Card";
+import Button from "@/components/Button";
 
 interface LinksProps {}
 
@@ -23,7 +24,7 @@ export default function Links(props: LinksProps) {
 
   return (
     <Layout title="Lista de links" className="flex flex-col ">
-      <div className="flex justify-around items-center pt-20">
+      <div className="flex justify-between items-center p-10 ">
         <div className="flex flex-col ">
           <h1 className="text-5xl font-semibold">Minhas Finanças</h1>
           <p className="text-sm">Você tem 1 registro(s)</p>
@@ -36,8 +37,11 @@ export default function Links(props: LinksProps) {
             onChange={() => console.log("Filtrar")}
             className="bg-transparent"
           />
-          <button
-            className="flex items-center gap-2 bg-purple-600 p-5 rounded-full"
+          <Button
+            color="purple"
+            rounded="rounded-full"
+            padding="p-5"
+            className="flex items-center gap-2"
             onClick={handleRedirectNew}
           >
             <IconPlus
@@ -46,10 +50,10 @@ export default function Links(props: LinksProps) {
               stroke={4}
             />
             Novo Registro
-          </button>
+          </Button>
         </div>
       </div>
-      <section className="flex gap-6 flex-wrap  mt-8">
+      <section className="flex gap-6 flex-wrap  p-10">
         <Card />
       </section>
     </Layout>

@@ -11,18 +11,22 @@ interface ButtonProps {
   className?: string;
   widthFull?: boolean;
   children: any;
+  padding?: string;
+  rounded?: string;
   onClick?: () => void;
 }
 
 export default function Button(props: ButtonProps) {
-  const color = props.color ?? "gray";
+  const color = props.color ?? "";
   return (
     <button
       onClick={props.onClick}
       className={`
             cursor-pointer
-            bg-gradient-to-r from-${color ?? color}-500 to-${color ?? color}-800
-            text-white px-4 py-2 rounded-md ${props.widthFull ? "w-full" : ""} 
+            bg-gradient-to-r from-${color ?? color}-900 to-${color ?? color}-600
+            text-white ${props.widthFull ? "w-full" : ""} 
+            ${props.padding ? props.padding : "px-4 p-2"}
+            ${props.rounded ? props.rounded : "rounded-md"}
             ${props.className ?? props.className}
         `}
     >
