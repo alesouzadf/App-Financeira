@@ -53,7 +53,12 @@ export default function Links(props: LinksProps) {
           <Select
             valueSelect={status}
             nameSelect="filterByStatus"
-            option={<option value="">Filtrar por Status</option>}
+            option={
+              <option value="" disabled>
+                Filtrar por Status
+              </option>
+            }
+            secondOption={<option value="">Todas</option>}
             data={statusSelect}
             onChange={handleFilter}
             className="bg-transparent"

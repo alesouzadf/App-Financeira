@@ -1,11 +1,10 @@
-
-
 interface SelectProps {
   valueSelect: string;
   onChange: (event: any) => void;
   data: any;
   className?: string;
   option: any;
+  secondOption?: any;
   nameSelect: string;
 }
 
@@ -23,6 +22,7 @@ export default function Select(props: SelectProps) {
         required
       >
         {props.option}
+        {props.secondOption}
         {props.data.map((item: any, index: number) => (
           <option key={index} value={item.value} className={`bg-${item.value}`}>
             {item.label}
