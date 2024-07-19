@@ -7,7 +7,8 @@ interface ButtonProps {
     | "yellow"
     | "slate"
     | "purple"
-    | "cyan";
+    | "cyan"
+    | "zinc";
   className?: string;
   widthFull?: boolean;
   children: any;

@@ -1,21 +1,23 @@
 import Layout from "@/components/Layout";
-import {IconPlus} from "@tabler/icons-react";
+import {IconPlus, IconUser} from "@tabler/icons-react";
 import {useRouter} from "next/router";
 import Select from "@/components/Select";
 import {statusSelect} from "@/data/status";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import {useState} from "react";
-import {stat} from "fs";
 import useItem from "@/hooks/useItem";
+import Modal from "@/components/Modal";
+import useBoolean from "@/hooks/useBoolean";
 
 interface LinksProps {}
 
 export default function Links(props: LinksProps) {
   const {items, filterByStatus, getAll} = useItem();
   const [status, setStatus] = useState("");
+  const [visible, setVisible] = useBoolean(false);
   const router = useRouter();
-  
+
   function handleRedirectNew() {
     router.push("/New");
   }
@@ -32,7 +34,16 @@ export default function Links(props: LinksProps) {
   }
 
   return (
-    <Layout title="Lista de links" className="flex flex-col ">
+    <Layout title="Lista de links" className="flex flex-col">
+      <Button
+        color="zinc"
+        rounded="rounded-full"
+        className="flex items-center justify-center self-end h-16 w-16 rounded-full mr-14"
+        onClick={setVisible}
+      >
+        <IconUser size={30} />
+      </Button>
+      <Modal visible={visible} />
       <div className="flex justify-between items-center p-10 ">
         <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-semibold">Minhas Finanças</h1>

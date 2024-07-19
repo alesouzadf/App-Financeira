@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Sidebar from "./Sidebar";
-
+import Footer from "./Footer";
 
 interface LayoutProps {
   children: any;
@@ -29,6 +29,7 @@ export default function Layout(props: LayoutProps) {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
