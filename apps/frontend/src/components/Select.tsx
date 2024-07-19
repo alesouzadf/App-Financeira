@@ -1,6 +1,7 @@
-import Label from "./Label";
+
 
 interface SelectProps {
+  valueSelect: string;
   onChange: (event: any) => void;
   data: any;
   className?: string;
@@ -12,6 +13,7 @@ export default function Select(props: SelectProps) {
   return (
     <>
       <select
+        value={props.valueSelect}
         name={props.nameSelect}
         id={props.nameSelect}
         onChange={props.onChange}

@@ -22,9 +22,7 @@ export default function Form(props: FormProps) {
   useEffect(() => {
     (async () => {
       if (props.id) {
-        console.log(props.id);
         const item = await getById(props.id);
-        console.log(item);
         setDescription(item.description);
         setValue(item.value);
         setType(item.type);
@@ -32,9 +30,8 @@ export default function Form(props: FormProps) {
       }
     })();
   }, []);
-
   const handleSave = async () => {
-    await saveItem(description, value, type, status, id);
+    await saveItem(description, Number(value), type, status, id);
     router.push("/Dashboard");
     getAll();
   };
@@ -58,11 +55,12 @@ export default function Form(props: FormProps) {
         label="value"
         text="Valor Registro"
         placeholder="0,00"
-        value={value === 0 ? "0,00" : value}
+        value={value}
         valueChange={setValue}
       />
 
       <Select
+        valueSelect={type}
         option={
           <option value="" className="text-zinc-400 ">
             Selecione o Tipo
@@ -74,6 +72,7 @@ export default function Form(props: FormProps) {
         className="w-full border-b"
       />
       <Select
+        valueSelect={status}
         option={
           <option value="" className="text-zinc-400 ">
             Selecione o Status

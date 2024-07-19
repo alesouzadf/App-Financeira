@@ -1,5 +1,4 @@
-import {IconLoader, IconLoader2, IconLoader3} from "@tabler/icons-react";
-import {useState} from "react";
+import {IconLoader} from "@tabler/icons-react";
 
 interface LoadProps {
   loading?: boolean;

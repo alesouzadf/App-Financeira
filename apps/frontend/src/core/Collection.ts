@@ -25,7 +25,6 @@ export default class Collection {
         status,
       });
     }
-    console.log("DATA", data);
     return data;
   }
 
