@@ -17,7 +17,8 @@ export default function useItem() {
 
   async function getAll() {
     const data = await repo.getAll();
-    if (data[0].codigo) {
+    const invalidToken = data[0]?.codigo;
+    if (invalidToken) {
       router.push("/");
       return;
     }
