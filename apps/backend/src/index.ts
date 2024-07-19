@@ -11,10 +11,10 @@ import RegistrarTransactionController from "./adapters/transaction/RegistrarTran
 import ListarTransactionController from "./adapters/transaction/ListarTransactionControler";
 import RepositorioTransactionPrisma from "./external/db/RepositorioTransactionPrisma";
 import EditarTransactionController from "./adapters/transaction/EditarTransactionController";
-
 import ProvedorCriptografiaBcrypt from "./external/auth/ProvedorCriptografiaBcript";
-
 import UsuarioMiddleware from "./adapters/UserMiddleware";
+import FiltrarTransactionController from "./adapters/transaction/FiltrarTransactionController";
+import PegarTransactionByIdController from "./adapters/transaction/PegarTransactionByIdController";
 
 // ----------------------------------- Dependências
 
@@ -25,7 +25,6 @@ const provedorJWT = new ProvedorJWT(process.env.JWT_SECRET!);
 
 // ----------------------------------- Rotas Abertas
 new RegistrarUserController(app, repoUser, provedorCripto);
-new ListarUserController(app, repoUser);
 new LoginUserController(app, repoUser, provedorCripto, provedorJWT);
 
 // ----------------------------------- Rotas Fechadas
@@ -34,6 +33,9 @@ const usuarioMiddleware = UsuarioMiddleware({
   provedorJWT,
 });
 
+new ListarUserController(app, repoUser, usuarioMiddleware);
 new RegistrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new ListarTransactionController(app, repoTransaction, usuarioMiddleware);
+new FiltrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new EditarTransactionController(app, repoTransaction, usuarioMiddleware);
+new PegarTransactionByIdController(app, repoTransaction, usuarioMiddleware);

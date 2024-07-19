@@ -6,9 +6,9 @@ export default class RepositorioTransactionPrisma
 {
   private readonly prisma = new PrismaClient();
 
-  async obterPorId(id: number): Promise<Transaction | null> {
+  async obterPorId(userId: number, id: number): Promise<Transaction> {
     const transactionData = await this.prisma.transaction.findUnique({
-      where: {id},
+      where: {userId, id},
     });
 
     if (!transactionData) {
@@ -21,6 +21,19 @@ export default class RepositorioTransactionPrisma
   async buscarTudo(userId: number): Promise<Transaction[]> {
     const transactions = await this.prisma.transaction.findMany({
       where: {
+        userId: userId,
+      },
+    });
+    return transactions as any;
+  }
+
+  async filtrarPorStatus(
+    status: string,
+    userId: number
+  ): Promise<Transaction[]> {
+    const transactions = await this.prisma.transaction.findMany({
+      where: {
+        status: status,
         userId: userId,
       },
     });
