@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select {
+  @apply bg-transparent;
+}
+
+option {
+  @apply bg-black text-zinc-100;
+}
+
+input {
+  @apply text-zinc-100;
+}

@@ -1,3 +1,5 @@
-import { somar } from "core";
+import Terminal from "./external/ui/util/Terminal";
+import createTransaction from "./external/ui/transacao/createTransaction";
 
-console.log(somar(1, 2))
+Terminal.title("APP FINANCEIRA");
+createTransaction();
