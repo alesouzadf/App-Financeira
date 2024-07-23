@@ -1,6 +1,7 @@
 import {useRouter} from "next/router";
 import Button from "./Button";
 import Request from "@/core/Request";
+import useAuth from "@/hooks/useAuth";
 
 interface ModalProps {
   visible: boolean;
@@ -8,14 +9,15 @@ interface ModalProps {
 
 export default function Modal(props: ModalProps) {
   const router = useRouter();
-  const token = Request.headers.authorization?.replace("Bearer ", "")
-  // const arrayToken = token!.split('.')
-  // const tokenPayload = JSON.parse(atob(arrayToken[1]))
+  const {userData} = useAuth();
   return (
     <div
-      className={`self-end absolute top-28 z-30 bg-zinc-800 rounded-md p-4 space-y-5 ${props.visible ? "inline" : "hidden"}`}
+      className={`self-end absolute top-24 right-24 z-30 bg-zinc-800 rounded-md p-4 space-y-5 min-w-52 ${props.visible ? "inline" : "hidden"}`}
     >
-      <h4>{"Nome Usuário"}</h4>
+      <div className=" text-base space-x-2 text-center">
+        <p>{userData.name}</p>
+        <p>{userData.email}</p>
+      </div>
       <Button
         color="red"
         widthFull
