@@ -8,8 +8,8 @@ interface SidebarProps {
 export default function Sidebar(props: SidebarProps) {
   return (
     <div
-      className={`absolute sm:static 
-    sm:flex flex-col z-30  bg-zinc-900
+      className={`absolute  sm:static 
+    sm:flex flex-col z-30  bg-zinc-900 
     ${props.className}`}
     >
       <div className="bg-purple-500 h-36 rounded-r-3xl flex justify-center items-center">

@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import {IconPlus, IconUser} from "@tabler/icons-react";
+import {IconPlus, IconUser, IconUserCircle} from "@tabler/icons-react";
 import {useRouter} from "next/router";
 import Select from "@/components/Select";
 import {statusSelect} from "@/data/status";
@@ -36,12 +36,13 @@ export default function Links(props: LinksProps) {
   return (
     <Layout title="Lista de links" className="flex flex-col">
       <Button
-        color="zinc"
+        padding="p-1"
         rounded="rounded-full"
-        className="flex items-center justify-center self-end h-16 w-16 rounded-full mr-14"
+        className={`flex items-center justify-center self-end h-12 w-12  mr-14
+        hover:scale-110 ${visible ? "bg-zinc-800" : ""}`}
         onClick={setVisible}
       >
-        <IconUser size={30} />
+        <IconUserCircle size={40} stroke={1.3} className="" />
       </Button>
       <Modal visible={visible} />
       <div className="flex justify-between items-center p-10 ">

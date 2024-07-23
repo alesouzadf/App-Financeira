@@ -13,7 +13,7 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const {setLogged} = useAuth();
+  const {setLogged, setUserData} = useAuth();
 
   const handleLogin = async (event: any) => {
     event.preventDefault();
@@ -24,7 +24,7 @@ export default function Auth() {
         Request.addToken(response.token);
         setLogged(true);
         router.push("/Dashboard");
-
+        setUserData({name: response.nome, email: response.email});
         return;
       }
       window.alert("Usuário ou senha incorretos");
