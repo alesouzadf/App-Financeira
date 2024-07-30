@@ -15,6 +15,7 @@ import ProvedorCriptografiaBcrypt from "./external/auth/ProvedorCriptografiaBcri
 import UsuarioMiddleware from "./adapters/UserMiddleware";
 import FiltrarTransactionController from "./adapters/transaction/FiltrarTransactionController";
 import PegarTransactionByIdController from "./adapters/transaction/PegarTransactionByIdController";
+import ExcluirTransactionController from "./adapters/transaction/ExcluirTransactionController";
 
 // ----------------------------------- Dependências
 
@@ -38,4 +39,5 @@ new RegistrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new ListarTransactionController(app, repoTransaction, usuarioMiddleware);
 new FiltrarTransactionController(app, repoTransaction, usuarioMiddleware);
 new EditarTransactionController(app, repoTransaction, usuarioMiddleware);
+new ExcluirTransactionController(app, repoTransaction, usuarioMiddleware);
 new PegarTransactionByIdController(app, repoTransaction, usuarioMiddleware);

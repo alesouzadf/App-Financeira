@@ -4,6 +4,7 @@ import {RepositorioTransaction, Transaction} from "core";
 export default class RepositorioTransactionPrisma
   implements RepositorioTransaction
 {
+
   private readonly prisma = new PrismaClient();
 
   async obterPorId(userId: number, id: number): Promise<Transaction> {
@@ -49,13 +50,12 @@ export default class RepositorioTransactionPrisma
     return new Transaction(newTransaction);
   }
 
-  update(id: number): Promise<Transaction> {
-    throw new Error("Method not implemented.");
-  }
-  getById(id: number): Promise<Transaction | null> {
-    throw new Error("Method not implemented.");
-  }
-  delete(id: number): Promise<boolean> {
-    throw new Error("Method not implemented.");
+  async excluir(userId: number, id: number): Promise<void> {
+    await this.prisma.transaction.delete({
+      where: {
+        id: id,
+        userId: userId
+      }
+    })
   }
 }
