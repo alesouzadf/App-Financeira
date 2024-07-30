@@ -6,6 +6,7 @@ import {
   FiltrarTransaction,
   PegarTransactionById,
   EditarTransaction,
+  ExcluirTransaction,
 } from "core";
 import {TransactionDTO, FiltroDTO} from "../dto";
 import PegarPorIdDTO from "../dto/PegarPorIdDTO";
@@ -43,6 +44,14 @@ export default class TransactionFacade {
     const casoDeUso = new EditarTransaction(this.repo!);
     await casoDeUso.executar({id, ...data});
     return true;
+  }
+
+  async excluir(
+    userId: number,
+    id: number,
+  ): Promise<void> {
+    const casoDeUso = new ExcluirTransaction(this.repo!);
+    await casoDeUso.executar({userId, id});
   }
 
   async filtrar(data: FiltroDTO): Promise<Transaction[]> {

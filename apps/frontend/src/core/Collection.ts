@@ -29,8 +29,7 @@ export default class Collection {
   }
 
   async delete(id: string) {
-    const data = await Request.delete(`/transaction/${id}`);
-    return data;
+    await Request.delete(`/transaction/excluir/${id}`);
   }
 
   async getAll() {

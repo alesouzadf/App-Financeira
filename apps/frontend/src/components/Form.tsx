@@ -13,7 +13,7 @@ interface FormProps {
 
 export default function Form(props: FormProps) {
   const router = useRouter();
-  const {saveItem, getById, getAll} = useItem();
+  const {saveItem, deleteItem, getById, getAll} = useItem();
   const id = props.id ?? "";
   const [description, setDescription] = useState("");
   const [value, setValue] = useState(0);
@@ -30,10 +30,17 @@ export default function Form(props: FormProps) {
       }
     })();
   }, []);
+
   const handleSave = async () => {
     await saveItem(description, Number(value), type, status, id);
     router.push("/Dashboard");
     getAll();
+  };
+
+  const handleDelete = async () => {
+    console.log('entrei handleDelete')
+    await deleteItem(id);
+    router.push("/Dashboard");
   };
 
   return (
@@ -91,11 +98,9 @@ export default function Form(props: FormProps) {
         <Button
           color="red"
           widthFull
-          onClick={() => {
-            router.push("/Dashboard");
-          }}
+          onClick={handleDelete}
         >
-          Cancelar
+          Excluir
         </Button>
       </div>
     </div>
